@@ -1,6 +1,7 @@
 package com.marcoder.transactions_service.domain.model;
 
 
+import com.marcoder.transactions_service.domain.enums.AuditAction;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,5 +33,20 @@ public class RiskEvaluation {
     private int score_Contribution;
 
     private LocalDateTime evaluatedAt;
+
+    @Enumerated(EnumType.STRING)
+    private AuditAction auditAction;
+
+    @Column(name = "payload", columnDefinition = "TEXT")
+    private String payload;
+
+    @Column(name = "previous_hash")
+    private String previousHash;
+
+    @Column(name = "current_hash", nullable = false)
+    private String currentHash;
+
+    @Column(name = "creation_date", nullable = false)
+    private LocalDateTime createdAt;
 
 }
